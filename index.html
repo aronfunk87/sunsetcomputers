@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Computers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url('images/sunset.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #FF6B35;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(to right, #FF6B35, #FFA726);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .slogan {
+            color: #ddd;
+            font-size: 0.9rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #FF6B35;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .phone-header {
+            color: white;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .phone-header:hover {
+            color: #FF6B35;
+        }
+
+        .page-content {
+            display: none;
+            padding: 30px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #FF6B35;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #FF6B35, #FFA726);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .content-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .intro-section {
+            text-align: center;
+            padding-bottom: 35px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #f0f0f0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            color: #FFA726;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-section h3 i {
+            color: #FF6B35;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            background: linear-gradient(to right, #FF6B35, #FFA726);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            margin-top: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            color: white;
+        }
+
+        .download-btn i {
+            margin-right: 8px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #FF6B35, #FFA726);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .map-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-info {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #FFA726;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: #FF6B35;
+            width: 25px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-right {
+                width: 100%;
+                align-items: flex-start;
+                margin-top: 15px;
+            }
+            
+            nav {
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-link {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-laptop"></i>
+                <div class="logo-text">
+                    <h1>Sunset Computers</h1>
+                    <span class="slogan">On the road to you!</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="tel:+13068424151" class="phone-header">
+                    <i class="fas fa-phone"></i> 1-306-842-4151
+                </a>
+                <nav>
+                    <a href="#" class="nav-link active" data-page="services">Services</a>
+                    <a href="#" class="nav-link" data-page="about">About Us</a>
+                    <a href="#" class="nav-link" data-page="contact">Contact Us</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div id="services" class="page-content active">
+            
+            <div class="content-section intro-section">
+                <h2>Our Services</h2>
+                <p class="intro-text">Weyburn and Area Computer Repair, New and Refurbished Laptops & Computers, Business Solutions and more!</p>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-headset"></i> Remote Support Tool</h3>
+                <p>Need immediate assistance? Download our remote support tool below to allow our technicians to securely connect to your computer.</p>
+                <a href="https://get.teamviewer.com/v2fw6nw" class="download-btn" target="_blank">
+                    <i class="fas fa-download"></i> Download Remote Support
+                </a>
+            </div>
+
+            <div class="content-section">
+                <h3><i class="fas fa-desktop"></i> Computer Sales and Repair</h3>
+                <p>We repair all makes and models of Windows PCs and laptops. We provide fast, reliable service to get your devices back up and running.</p>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-building"></i> Business Solutions</h3>
+                <p>We sell, service and install servers, workstations, and laptops for your business. We can help you set up websites, custom domain names, and email addresses as well.</p>
+                <p>We are available for service calls after hours for your convenience.</p>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-laptop-house"></i> Used & Refurbished Machines</h3>
+                <p>Looking to save some money? We often have a variety of refurbished laptops and PCs. All our refurbished equipment comes with warranty coverage and is thoroughly tested for quality.</p>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-truck"></i> Travel to You</h3>
+                <p>We travel right to your jobsite when needed. Just another way we help serve you better! Our mobile service team can come to your location for on-site support and installations.</p>
+            </div>
+        </div>
+
+        <div id="about" class="page-content">
+            <div class="content-section intro-section">
+                <h2>About Us</h2>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-history"></i> The Evolution of Sunset Computers... on the road to you</h3>
+                <p><strong>It all started with two CD-ROMs…</strong></p>
+                <p>In 2000, Ed had the opportunity to start his own business. He was tech savvy, loved computers, and saw that they were becoming increasingly important in business and in life. With limited resources he started in an office in his home. Two CD ROM's were purchased and resold and Sunset Computers was born.</p>
+                <p>Within a few years he had moved to the spare bedroom, lined it with shelves to hold parts and ran cabling to support the three work stations. Son Aron followed in dad’s footsteps and joined the business as well.</p>
+                <p>2010 brought more growth and it was apparent we needed more space so plans were drawn up to build a 36 x 50 building adjacent to the garage. Finding the right style of workstations with high weight capacity and in the right size/configurations was a challenge, but Ed was not discouraged. This innovative entrepreneur pulled out his carpenter belt and his MIG welder, designed and built custom desks with laminated tops that would withstand tools and the challenges of the workday. We ended up selling a few of those desks as well!</p>
+                <p>Ed unfortunately passed away in 2023. Aron has been running the business since, continuing existing services, and expanding into providing Linux and other open-source solutions for local customers and companies. </p>
+            </div>
+            
+            <div class="content-section">
+                <h3><i class="fas fa-tools"></i> Services & Expertise</h3>
+                <p>The list of services provided by Sunset Computers is extensive. Need computer sales and repair? We can fix pretty much any windows PC or laptop. We usually stock Asus Expertbooks, and can custom build any PC you would like! Have you outgrown one computer and now need workstations with servers? We can do that too!</p>
+                <p>We also specialize in networking solutions. Whether for home or business, we design and install custom Ubiquiti UniFi setups to ensure your WiFi and wired networks are fast, stable, and secure. We can help you set up custom domain names, and professional email addresses as well.</p>
+            </div>
+
+            <div class="content-section">
+                <h3><i class="fas fa-heart"></i> Community & Reach</h3>
+                <p>Customers are as close as the neighbors down the street, to half way around the world. The “Remote Support Tool” on our website allows us to, in the words of a student “reach through the wires and help me with my computer”. We tend to work into the evening, so feel free to call until 7PM.</p>
+            </div>
+        </div>
+
+        <div id="contact" class="page-content">
+            <div class="content-section intro-section">
+                <h2>Contact Us</h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/mlgrorvj" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="map-container">
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://maps.google.com/maps?q=36%20Milestone%20St%2C%20McTaggart%2C%20SK&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 36 Milestone St.<br>McTaggart, SK<br>S0G 3G0</p>
+                <p><i class="fas fa-phone"></i> 1-306-842-4151</p>
+                <p><i class="fas fa-envelope"></i> info@sunsetcomputers.ca</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2005-2025 Sunset Computers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+                
+                this.classList.add('active');
+                
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            console.log('Form submitted');
+            alert(`Thank you ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
