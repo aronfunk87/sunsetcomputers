@@ -454,6 +454,8 @@
                 <p>We also specialize in networking solutions. Whether for home or business, we design and install custom Ubiquiti UniFi setups to ensure your WiFi and wired networks are fast, stable, and secure. We can help you set up custom domain names, and professional email addresses as well.</p>
             </div>
 
+        </div>
+
         <div id="contact" class="page-content">
             <div class="content-section intro-section">
                 <h2>Contact Us</h2>
@@ -475,7 +477,7 @@
                         
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="message_subject" required>
                         </div>
                         
                         <div class="form-group">
@@ -522,20 +524,6 @@
                 document.getElementById(pageId).classList.add('active');
             });
         });
-
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            console.log('Form submitted');
-            alert(`Thank you ${name}! Your message has been sent. We'll contact you at ${email} soon.`);
-            this.reset();
-        });
     </script>
 </body>
-
 </html>
-
